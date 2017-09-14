@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--List View Controller-->
         <scene sceneID="t2d-W5-GgN">
             <objects>
-                <viewController id="6Gy-oJ-0cO" sceneMemberID="viewController">
+                <viewController id="6Gy-oJ-0cO" customClass="ListViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HNc-92-e5B"/>
                         <viewControllerLayoutGuide type="bottom" id="cdy-kH-Hgr"/>
@@ -24,6 +24,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9eg-40-MS9">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6Gy-oJ-0cO" id="3Nq-xY-K4K"/>
+                                    <outlet property="delegate" destination="6Gy-oJ-0cO" id="jN2-7F-p5V"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="3056.8000000000002" y="433.13343328335833"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="4wz-rX-GJO">
             <objects>
-                <viewController id="4TS-3O-o3g" sceneMemberID="viewController">
+                <viewController id="4TS-3O-o3g" customClass="MapViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PHN-Y5-WYi"/>
                         <viewControllerLayoutGuide type="bottom" id="2Q0-Sh-a5H"/>
@@ -54,6 +58,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wHT-mX-nZm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4TS-3O-o3g" id="xPZ-KO-OfC"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,7 +80,7 @@
         <!--Add Location-->
         <scene sceneID="Xy7-8X-6KD">
             <objects>
-                <viewController id="esd-2d-dvr" sceneMemberID="viewController">
+                <viewController id="esd-2d-dvr" customClass="AddLocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gnn-HF-4gH"/>
                         <viewControllerLayoutGuide type="bottom" id="eUd-2J-dEM"/>
@@ -130,15 +137,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="b7o-Nu-uV3"/>
+                    <connections>
+                        <outlet property="findLocationButton" destination="Nru-hy-TeF" id="fTN-3M-elf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UpE-Av-gXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5324" y="-224"/>
+            <point key="canvasLocation" x="4674" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--Check Added Location View Controller-->
         <scene sceneID="gzI-Qd-FY8">
             <objects>
-                <viewController id="QGt-An-fSy" sceneMemberID="viewController">
+                <viewController id="QGt-An-fSy" customClass="CheckAddedLocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oRI-rj-X5W"/>
                         <viewControllerLayoutGuide type="bottom" id="lgv-bP-heP"/>
@@ -159,6 +169,9 @@
                                 <state key="normal" title="FINISH">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="finish:" destination="QGt-An-fSy" eventType="touchUpInside" id="F8j-9B-pF6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -172,15 +185,18 @@
                             <constraint firstItem="6hR-fK-BbV" firstAttribute="leading" secondItem="YH1-24-PMA" secondAttribute="leading" id="pVO-xD-YTE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="finishButton" destination="CfX-T6-a4S" id="a57-AY-eoc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHM-6l-e8p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6192.8000000000002" y="-224.4377811094453"/>
+            <point key="canvasLocation" x="5526" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ndc-Ku-cp7">
             <objects>
-                <viewController id="Mkd-nL-P6J" sceneMemberID="viewController">
+                <viewController id="Mkd-nL-P6J" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JNN-ZX-DCp"/>
                         <viewControllerLayoutGuide type="bottom" id="6zW-GO-asW"/>
@@ -237,7 +253,12 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8H-CW-Arx">
                                         <rect key="frame" x="183" y="0.0" width="55" height="30"/>
-                                        <state key="normal" title="Sign Up"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" red="0.31747320289999997" green="0.69456338880000001" blue="0.87847805020000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signUp:" destination="Mkd-nL-P6J" eventType="touchUpInside" id="204-MV-BEh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -258,6 +279,9 @@
                             <constraint firstItem="wEt-cb-Mq6" firstAttribute="centerX" secondItem="UL6-7C-X9N" secondAttribute="centerX" id="reG-Kn-PtP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="8m0-Mh-1L2" id="Rkn-MS-lcs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cep-9b-dhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -271,6 +295,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.31747320289999997" green="0.69456338880000001" blue="0.87847805020000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="3V4-FF-jo5" kind="relationship" relationship="viewControllers" id="LWs-WX-6vq"/>
@@ -281,11 +306,11 @@
             </objects>
             <point key="canvasLocation" x="881" y="106"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Map-->
         <scene sceneID="Rwi-MH-1za">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3V4-FF-jo5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-deselected" id="txE-5V-i1x"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-deselected" id="txE-5V-i1x"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="W36-gw-IZl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -300,11 +325,11 @@
             </objects>
             <point key="canvasLocation" x="2117.5999999999999" y="-223.53823088455775"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--List-->
         <scene sceneID="2Ro-X4-QYA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JNs-dj-Gdq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" id="ciJ-9Z-WKJ"/>
+                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-deselected" id="ciJ-9Z-WKJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bNk-RK-wV8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -322,7 +347,7 @@
         <!--Navigation Controller-->
         <scene sceneID="moi-KO-KWi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f5p-Wf-UKa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AddLocationNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="f5p-Wf-UKa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6eH-py-EkS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -335,7 +360,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bg3-Gr-hKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4424.8000000000002" y="-224.4377811094453"/>
+            <point key="canvasLocation" x="3817" y="106"/>
         </scene>
     </scenes>
     <resources>
