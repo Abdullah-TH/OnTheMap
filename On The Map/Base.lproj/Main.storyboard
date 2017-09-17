@@ -29,16 +29,26 @@
                                     <outlet property="delegate" destination="6Gy-oJ-0cO" id="jN2-7F-p5V"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="s8S-vj-Ped">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9eg-40-MS9" secondAttribute="trailing" id="BQn-Wm-S2h"/>
                             <constraint firstItem="9eg-40-MS9" firstAttribute="leading" secondItem="51n-5I-emZ" secondAttribute="leading" id="HFj-26-Edf"/>
                             <constraint firstItem="9eg-40-MS9" firstAttribute="top" secondItem="51n-5I-emZ" secondAttribute="top" id="OBM-g3-mAS"/>
+                            <constraint firstItem="s8S-vj-Ped" firstAttribute="centerY" secondItem="51n-5I-emZ" secondAttribute="centerY" id="YPW-vE-EUT"/>
                             <constraint firstItem="cdy-kH-Hgr" firstAttribute="top" secondItem="9eg-40-MS9" secondAttribute="bottom" id="j40-D1-3Ah"/>
+                            <constraint firstItem="s8S-vj-Ped" firstAttribute="centerX" secondItem="51n-5I-emZ" secondAttribute="centerX" id="y4U-bt-TK2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t2t-RI-f2W"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="s8S-vj-Ped" id="IQx-xm-ljD"/>
+                        <outlet property="tableView" destination="9eg-40-MS9" id="PoP-62-iQv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EG-Hd-Z6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,16 +72,24 @@
                                     <outlet property="delegate" destination="4TS-3O-o3g" id="xPZ-KO-OfC"/>
                                 </connections>
                             </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="s5N-x0-jKT">
+                                <rect key="frame" x="169" y="315.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wHT-mX-nZm" secondAttribute="trailing" id="Bwe-mw-pRU"/>
                             <constraint firstItem="2Q0-Sh-a5H" firstAttribute="top" secondItem="wHT-mX-nZm" secondAttribute="bottom" id="KCl-iK-vai"/>
                             <constraint firstItem="wHT-mX-nZm" firstAttribute="top" secondItem="PHN-Y5-WYi" secondAttribute="bottom" id="Y5f-1V-k65"/>
+                            <constraint firstItem="s5N-x0-jKT" firstAttribute="centerY" secondItem="S1e-Zt-ZM2" secondAttribute="centerY" id="agq-sU-y1z"/>
                             <constraint firstItem="wHT-mX-nZm" firstAttribute="leading" secondItem="S1e-Zt-ZM2" secondAttribute="leading" id="dR8-rk-ora"/>
+                            <constraint firstItem="s5N-x0-jKT" firstAttribute="centerX" secondItem="S1e-Zt-ZM2" secondAttribute="centerX" id="wPh-c9-GWS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TG1-xT-yhc"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="s5N-x0-jKT" id="hEt-LU-HzM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfa-nt-Pzx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: OnTheMapViewController
 {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad()
     {

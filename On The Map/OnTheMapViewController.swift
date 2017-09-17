@@ -12,6 +12,8 @@ class OnTheMapViewController: UIViewController
 {
     static let udacityColor = UIColor(red: 81/255.0, green: 177/255.0, blue: 224/255.0, alpha: 1)
 
+    var studentLocations: [StudentLocation]!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class OnTheMapViewController: UIViewController
         let textAttributes: [String: Any] = [NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 14.0) as Any]
         logoutButton.setTitleTextAttributes(textAttributes, for: .normal)
         
-        let refreshButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refresh))
+        let refreshButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refreshStudentLocations))
         refreshButton.tintColor = OnTheMapViewController.udacityColor
         
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_addpin"), style: .plain, target: self, action: #selector(addStudentLocation))
@@ -47,9 +49,48 @@ class OnTheMapViewController: UIViewController
         present(addLocationNVC, animated: true, completion: nil)
     }
     
-    func refresh()
+    func refreshStudentLocations()
     {
-        
+        activityIndicatorShouldStartAnimating()
+        APIManager.getStudentLocations { (results, error) in
+            
+            self.studentLocations = results
+            DispatchQueue.main.async {
+                self.shouldRefereshData()
+                self.activityIndicatorShouldStopAnimating()
+            }
+        }
+    }
+    
+    func showErrorMessage(_ message: String)
+    {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func activityIndicatorShouldStartAnimating()
+    {
+        fatalError("Must be implemented by a subclass")
+    }
+    
+    func activityIndicatorShouldStopAnimating()
+    {
+        fatalError("Must be implemented by a subclass")
+    }
+    
+    func shouldRefereshData()
+    {
+        fatalError("Must be implemented by a subclass")
     }
 
 }
+
+
+
+
+
+
+
+
