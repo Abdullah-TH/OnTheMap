@@ -72,8 +72,10 @@
                                     <outlet property="delegate" destination="4TS-3O-o3g" id="xPZ-KO-OfC"/>
                                 </connections>
                             </mapView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="s5N-x0-jKT">
-                                <rect key="frame" x="169" y="315.5" width="37" height="37"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="s5N-x0-jKT">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,14 +83,13 @@
                             <constraint firstAttribute="trailing" secondItem="wHT-mX-nZm" secondAttribute="trailing" id="Bwe-mw-pRU"/>
                             <constraint firstItem="2Q0-Sh-a5H" firstAttribute="top" secondItem="wHT-mX-nZm" secondAttribute="bottom" id="KCl-iK-vai"/>
                             <constraint firstItem="wHT-mX-nZm" firstAttribute="top" secondItem="PHN-Y5-WYi" secondAttribute="bottom" id="Y5f-1V-k65"/>
-                            <constraint firstItem="s5N-x0-jKT" firstAttribute="centerY" secondItem="S1e-Zt-ZM2" secondAttribute="centerY" id="agq-sU-y1z"/>
                             <constraint firstItem="wHT-mX-nZm" firstAttribute="leading" secondItem="S1e-Zt-ZM2" secondAttribute="leading" id="dR8-rk-ora"/>
-                            <constraint firstItem="s5N-x0-jKT" firstAttribute="centerX" secondItem="S1e-Zt-ZM2" secondAttribute="centerX" id="wPh-c9-GWS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TG1-xT-yhc"/>
                     <connections>
                         <outlet property="activityIndicator" destination="s5N-x0-jKT" id="hEt-LU-HzM"/>
+                        <outlet property="mapView" destination="wHT-mX-nZm" id="xfR-ki-pLN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfa-nt-Pzx" userLabel="First Responder" sceneMemberID="firstResponder"/>

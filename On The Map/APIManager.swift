@@ -10,16 +10,20 @@ import Foundation
 
 class APIManager
 {
+    static let session = URLSession.shared
+    
     static func getStudentLocations(completionHandler: @escaping (_ results: [StudentLocation]?, _ error: Error?) -> Void)
     {
         let request = ParseRouter.getStudentLocations.asUrlRequest()
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             
             func sendError(_ errorMessage: String)
             {
                 print(errorMessage)
                 let userInfo = [NSLocalizedDescriptionKey : errorMessage]
-                completionHandler(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                DispatchQueue.main.async {
+                    completionHandler(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                }
             }
             
             guard (error == nil) else
@@ -69,7 +73,9 @@ class APIManager
                     }
                 }
                 
-                completionHandler(studentLocations, nil) /*** HAPPY END! ***/
+                DispatchQueue.main.async {
+                    completionHandler(studentLocations, nil) /*** HAPPY END! ***/
+                }
             }
             catch let error
             {

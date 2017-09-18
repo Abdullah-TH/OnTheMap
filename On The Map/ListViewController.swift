@@ -72,15 +72,9 @@ extension ListViewController: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let location = studentLocations[indexPath.row]
-        let app = UIApplication.shared
-        if let url = URL(string: location.mediaURL)
+        if let location = studentLocations?[indexPath.row]
         {
-            app.open(url, options: [:], completionHandler: nil)
-        }
-        else
-        {
-            showErrorMessage("Invalid link")
+            openURLInbrowser(url: URL(string: location.mediaURL))
         }
         
     }

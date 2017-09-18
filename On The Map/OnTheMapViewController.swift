@@ -12,7 +12,7 @@ class OnTheMapViewController: UIViewController
 {
     static let udacityColor = UIColor(red: 81/255.0, green: 177/255.0, blue: 224/255.0, alpha: 1)
 
-    var studentLocations: [StudentLocation]!
+    var studentLocations: [StudentLocation]?
     
     override func viewDidLoad()
     {
@@ -54,10 +54,15 @@ class OnTheMapViewController: UIViewController
         activityIndicatorShouldStartAnimating()
         APIManager.getStudentLocations { (results, error) in
             
-            self.studentLocations = results
-            DispatchQueue.main.async {
+            if error == nil
+            {
+                self.studentLocations = results
                 self.shouldRefereshData()
                 self.activityIndicatorShouldStopAnimating()
+            }
+            else
+            {
+                self.showErrorMessage(error!.localizedDescription)
             }
         }
     }
@@ -68,6 +73,25 @@ class OnTheMapViewController: UIViewController
         let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func openURLInbrowser(url: URL?)
+    {
+        let app = UIApplication.shared
+        if let url = url
+        {
+            app.open(url, options: [:], completionHandler: { success in
+                
+                if !success
+                {
+                    self.showErrorMessage("Invalid link")
+                }
+            })
+        }
+        else
+        {
+            showErrorMessage("Invalid link")
+        }
     }
     
     func activityIndicatorShouldStartAnimating()
