@@ -58,12 +58,13 @@ class OnTheMapViewController: UIViewController
             {
                 self.studentLocations = results
                 self.shouldRefereshData()
-                self.activityIndicatorShouldStopAnimating()
             }
             else
             {
                 self.showErrorMessage(error!.localizedDescription)
             }
+            
+            self.activityIndicatorShouldStopAnimating()
         }
     }
     
