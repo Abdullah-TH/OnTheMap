@@ -252,7 +252,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="j7F-nb-tc8" kind="presentation" id="JnQ-Ds-tQb"/>
+                                            <action selector="login:" destination="Mkd-nL-P6J" eventType="touchUpInside" id="ZYn-Ra-tiv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -299,7 +299,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ce7-9p-uGr" id="kMS-XK-bgd"/>
+                        <outlet property="emailTextField" destination="P4J-2u-Ps8" id="oHL-Ay-gG6"/>
                         <outlet property="loginButton" destination="8m0-Mh-1L2" id="Rkn-MS-lcs"/>
+                        <outlet property="passwordTextField" destination="Nl2-Kx-YcN" id="aWL-0J-nbj"/>
+                        <segue destination="j7F-nb-tc8" kind="presentation" identifier="LoginToMain" id="GQx-L7-DGf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cep-9b-dhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -22,7 +22,7 @@ class OnTheMapViewController: UIViewController
     
     func setupUI()
     {
-        let logoutButton = UIBarButtonItem(title: "LOGOUT", style: .plain, target: self, action: #selector(logout))
+        let logoutButton = UIBarButtonItem(title: "LOGOUT", style: .plain, target: self, action: #selector(logout(_:)))
         logoutButton.tintColor = OnTheMapViewController.udacityColor
         let textAttributes: [String: Any] = [NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 14.0) as Any]
         logoutButton.setTitleTextAttributes(textAttributes, for: .normal)
@@ -38,9 +38,24 @@ class OnTheMapViewController: UIViewController
         navigationItem.title = "On the Map"
     }
 
-    func logout()
+    func logout(_ sender: Any)
     {
-        dismiss(animated: true, completion: nil)
+        (sender as! UIBarButtonItem).isEnabled = false
+        activityIndicatorShouldStartAnimating()
+        APIManager.logoutFromUdacity { (sessionID, error) in
+            
+            if error == nil
+            {
+                self.dismiss(animated: true, completion: nil)
+            }
+            else
+            {
+                print(error!.localizedDescription)
+            }
+            
+            self.activityIndicatorShouldStopAnimating()
+            (sender as! UIBarButtonItem).isEnabled = true
+        }
     }
     
     func addStudentLocation()
