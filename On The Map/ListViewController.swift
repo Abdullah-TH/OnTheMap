@@ -50,21 +50,19 @@ extension ListViewController: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "StudentLocationCell")
-        if cell == nil
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StudentLocationCell")! as! StudentLocationTableViewCell
+        if let location = studentLocations?[indexPath.row]
         {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "StudentLocationCell")
-            if let locations = studentLocations
-            {
-                let location = locations[indexPath.row]
-                
-                cell?.imageView?.image = #imageLiteral(resourceName: "icon_pin")
-                cell?.textLabel?.text = "\(location.firstName) \(location.lastName)"
-                cell?.detailTextLabel?.text = location.mediaURL
-                cell?.detailTextLabel?.textColor = UIColor.gray
-            }
+            cell.icon.image = #imageLiteral(resourceName: "icon_pin")
+            cell.title.text = "\(location.firstName) \(location.lastName)"
+            cell.subtitle.text = location.mediaURL
         }
-        return cell!
+        else
+        {
+            cell.textLabel?.text = "ERROR"
+        }
+        
+        return cell
     }
 }
 

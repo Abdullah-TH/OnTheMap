@@ -25,17 +25,6 @@ class LoginViewController: UIViewController
     {
         loginButton.layer.cornerRadius = 5
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if segue.identifier == "LoginToMain"
-        {
-            let tabBarVC = segue.destination as! UITabBarController
-            let navigationVC = tabBarVC.viewControllers![0] as! UINavigationController
-            let onTheMapVC = navigationVC.topViewController! as! OnTheMapViewController
-            onTheMapVC.udacityUser = sender as! UdacityUser
-        }
-    }
 
     @IBAction func login(_ sender: UIButton)
     {
@@ -46,7 +35,8 @@ class LoginViewController: UIViewController
             
             if error == nil
             {
-                self.performSegue(withIdentifier: "LoginToMain", sender: udacityUser)
+                UdacityUser.currentUdacityUser = udacityUser
+                self.performSegue(withIdentifier: "LoginToMain", sender: nil)
             }
             else
             {

@@ -55,8 +55,15 @@ enum UdacityRouter
             break
         }
         
-        let data = try? JSONSerialization.data(withJSONObject: parametersDictionary, options: .prettyPrinted)
-        return data
+        if parametersDictionary.isEmpty
+        {
+            return nil
+        }
+        else
+        {
+            let data = try? JSONSerialization.data(withJSONObject: parametersDictionary, options: .prettyPrinted)
+            return data
+        }
     }
     
     func asUrlRequest() -> URLRequest

@@ -10,6 +10,8 @@ import Foundation
 
 struct UdacityUser
 {
+    static var currentUdacityUser: UdacityUser!
+    
     var firstName: String
     var lastName: String
     var key: String
