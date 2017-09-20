@@ -13,11 +13,13 @@ class OnTheMapViewController: UIViewController
     static let udacityColor = UIColor(red: 81/255.0, green: 177/255.0, blue: 224/255.0, alpha: 1)
 
     var studentLocations: [StudentLocation]?
+    var udacityUser: UdacityUser!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         setupUI()
+        print(udacityUser.firstName, udacityUser.lastName, udacityUser.key)
     }
     
     func setupUI()

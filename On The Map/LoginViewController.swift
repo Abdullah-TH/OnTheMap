@@ -25,22 +25,32 @@ class LoginViewController: UIViewController
     {
         loginButton.layer.cornerRadius = 5
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "LoginToMain"
+        {
+            let tabBarVC = segue.destination as! UITabBarController
+            let navigationVC = tabBarVC.viewControllers![0] as! UINavigationController
+            let onTheMapVC = navigationVC.topViewController! as! OnTheMapViewController
+            onTheMapVC.udacityUser = sender as! UdacityUser
+        }
+    }
 
     @IBAction func login(_ sender: UIButton)
     {
         activityIndicator.startAnimating()
-        APIManager.loginToUdacity(username: emailTextField.text!, password: passwordTextField.text!) { (sessionID, error) in
+        APIManager.loginToUdacity(username: emailTextField.text!, password: passwordTextField.text!) { (udacityUser, error) in
             
             self.activityIndicator.stopAnimating()
             
             if error == nil
             {
-                print("\nsession id: \(sessionID!)\n")
-                self.performSegue(withIdentifier: "LoginToMain", sender: nil)
+                self.performSegue(withIdentifier: "LoginToMain", sender: udacityUser)
             }
             else
             {
-                let alertController = UIAlertController(title: "Error", message: error!.description, preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
                 let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)

@@ -12,7 +12,7 @@ class APIManager
 {
     static let session = URLSession.shared
     
-    static func loginToUdacity(username: String, password: String, completionHandler: @escaping (_ sessionID: String?, _ error: NSError?) -> Void)
+    static func loginToUdacity(username: String, password: String, completionHandler: @escaping (_ udacityUser: UdacityUser?, _ error: Error?) -> Void)
     {
         let request = UdacityRouter.createSession(username: username, password: password).asUrlRequest()
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -70,15 +70,109 @@ class APIManager
                     return
                 }
                 
-                DispatchQueue.main.async {
-                    completionHandler(sessionID, nil)  /*** HAPPY END! ***/
+                print(sessionID)
+                
+                guard let accountDictionary = json["account"] as? [String: Any] else
+                {
+                    sendError("cannot find key 'account' in the json result")
+                    return
                 }
+                
+                guard let accountKey = accountDictionary["key"] as? String else
+                {
+                    sendError("cannot find the account key")
+                    return
+                }
+                
+                print(accountKey)
+                
+                getUdacityUserPublicData(id: accountKey, completionHandler: { (udacityUser, error) in
+                    
+                    DispatchQueue.main.async {
+                        completionHandler(udacityUser, error)
+                    }
+                })
+                
             }
             catch let error
             {
                 sendError("cannot pars json: \(error)")
             }
 
+        }
+        
+        task.resume()
+    }
+    
+    private static func getUdacityUserPublicData(id: String, completionHandler: @escaping (_ result: UdacityUser?, _ error: Error?) -> Void)
+    {
+        let request = UdacityRouter.publicUserData(userID: id).asUrlRequest()
+        print(request.url!)
+        print(request.httpMethod!)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            func sendError(_ errorMessage: String)
+            {
+                print(errorMessage)
+                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
+                DispatchQueue.main.async {
+                    completionHandler(nil, NSError(domain: "getStudentLocations", code: 1, userInfo: userInfo))
+                }
+            }
+            
+            guard (error == nil) else
+            {
+                sendError("There was an error with your request: \(error!)")
+                return
+            }
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else
+            {
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else
+            {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            // Skip the first 5 characters of the response that Udacity puts for "security purpose"
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range)
+            
+            do
+            {
+                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as? [String: Any]
+                
+                guard let json = jsonObject else
+                {
+                    sendError("cannot cast json to [String: Any]")
+                    return
+                }
+                
+                guard let userDictionary = json["user"] as? [String: Any] else
+                {
+                    sendError("cannot get 'user' key from json")
+                    return
+                }
+                
+                guard let udacityUser = UdacityUser(userDictionary: userDictionary) else
+                {
+                    sendError("cannot parse uadacity user json")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    completionHandler(udacityUser, nil )  /*** HAPPY END ***/
+                }
+            }
+            catch let error
+            {
+                sendError("cannot pars json: \(error)")
+            }
+            
         }
         
         task.resume()

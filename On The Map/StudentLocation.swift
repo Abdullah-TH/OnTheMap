@@ -23,24 +23,24 @@ struct StudentLocation
     
     init?(studentLocationsDictionary: [String: Any])
     {
-        if let objectID = studentLocationsDictionary["objectId"] as? String,
+        if let objectID  = studentLocationsDictionary["objectId"]  as? String,
            let uniqueKey = studentLocationsDictionary["uniqueKey"] as? String,
            let firstName = studentLocationsDictionary["firstName"] as? String,
-           let lastName = studentLocationsDictionary["lastName"] as? String,
+           let lastName  = studentLocationsDictionary["lastName"]  as? String,
            let mapString = studentLocationsDictionary["mapString"] as? String,
-           let mediaURL = studentLocationsDictionary["mediaURL"] as? String,
-           let latitude = studentLocationsDictionary["latitude"] as? Double,
+           let mediaURL  = studentLocationsDictionary["mediaURL"]  as? String,
+           let latitude  = studentLocationsDictionary["latitude"]  as? Double,
            let longitude = studentLocationsDictionary["longitude"] as? Double,
            let createdAt = studentLocationsDictionary["createdAt"] as? String,
            let updatedAt = studentLocationsDictionary["updatedAt"] as? String
         {
-            self.objectID = objectID
+            self.objectID  = objectID
             self.uniqueKey = uniqueKey
             self.firstName = firstName
-            self.lastName = lastName
+            self.lastName  = lastName
             self.mapString = mapString
-            self.mediaURL = mediaURL
-            self.latitude = latitude
+            self.mediaURL  = mediaURL
+            self.latitude  = latitude
             self.longitude = longitude
             self.createdAt = createdAt
             self.updatedAt = updatedAt

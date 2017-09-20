@@ -14,6 +14,7 @@ enum UdacityRouter
     // Possible requests 
     case createSession(username: String, password: String)
     case deleteSession
+    case publicUserData(userID: String)
     
     // Base URL
     static let baseURLString = "https://www.udacity.com/api/"
@@ -26,6 +27,8 @@ enum UdacityRouter
             return "POST"
         case .deleteSession:
             return "DELETE"
+        case .publicUserData(userID: _):
+            return "GET"
         }
     }
     
@@ -35,6 +38,8 @@ enum UdacityRouter
         {
         case .createSession, .deleteSession:
             return "session"
+        case .publicUserData(userID: let id):
+            return "users/\(id)"
         }
     }
     
@@ -81,6 +86,8 @@ enum UdacityRouter
             {
                 request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
             }
+        default:
+            break 
         }
         
         request.httpBody = parameters

@@ -24,6 +24,7 @@
 		6A6361371F6AB81A0002A1F7 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6361361F6AB81A0002A1F7 /* AddLocationViewController.swift */; };
 		6A6361391F6AB9B00002A1F7 /* CheckAddedLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6361381F6AB9B00002A1F7 /* CheckAddedLocationViewController.swift */; };
 		6A63613C1F6AD0A10002A1F7 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A63613B1F6AD0A10002A1F7 /* StudentLocation.swift */; };
+		6AD1BAB51F712BE900EB0DF8 /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1BAB41F712BE900EB0DF8 /* UdacityUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		6A6361361F6AB81A0002A1F7 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		6A6361381F6AB9B00002A1F7 /* CheckAddedLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAddedLocationViewController.swift; sourceTree = "<group>"; };
 		6A63613B1F6AD0A10002A1F7 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		6AD1BAB41F712BE900EB0DF8 /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				6A63613B1F6AD0A10002A1F7 /* StudentLocation.swift */,
+				6AD1BAB41F712BE900EB0DF8 /* UdacityUser.swift */,
 				6A6361411F6AD1360002A1F7 /* Networking */,
 			);
 			name = Model;
@@ -339,6 +342,7 @@
 				6A6361311F6AB0FF0002A1F7 /* MapViewController.swift in Sources */,
 				6A58F4BB1F6E4DA50075C174 /* APIManager.swift in Sources */,
 				6A6361331F6AB10A0002A1F7 /* ListViewController.swift in Sources */,
+				6AD1BAB51F712BE900EB0DF8 /* UdacityUser.swift in Sources */,
 				6A6361351F6AB3DC0002A1F7 /* LoginViewController.swift in Sources */,
 				6A58F4B91F6E354E0075C174 /* ParseRouter.swift in Sources */,
 				6A6360FC1F695B0D0002A1F7 /* AppDelegate.swift in Sources */,

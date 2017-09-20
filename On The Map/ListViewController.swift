@@ -76,7 +76,6 @@ extension ListViewController: UITableViewDelegate
         {
             openURLInbrowser(url: URL(string: location.mediaURL))
         }
-        
     }
 }
 
