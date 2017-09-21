@@ -17,7 +17,6 @@ class MapViewController: OnTheMapViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        refreshStudentLocations()
     }
     
     override func activityIndicatorShouldStartAnimating()

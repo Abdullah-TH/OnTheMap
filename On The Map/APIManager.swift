@@ -50,9 +50,9 @@ class APIManager
             
             do
             {
-                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as? [String: Any]
+                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments)
                 
-                guard let json = jsonObject else
+                guard let json = jsonObject as? [String: Any] else
                 {
                     sendError("cannot cast json to [String: Any]")
                     return
@@ -142,9 +142,9 @@ class APIManager
             
             do
             {
-                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as? [String: Any]
+                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments)
                 
-                guard let json = jsonObject else
+                guard let json = jsonObject as? [String: Any] else
                 {
                     sendError("cannot cast json to [String: Any]")
                     return
@@ -214,9 +214,9 @@ class APIManager
             
             do
             {
-                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments) as? [String: Any]
+                let jsonObject = try JSONSerialization.jsonObject(with: newData, options: .allowFragments)
                 
-                guard let json = jsonObject else
+                guard let json = jsonObject as? [String: Any] else
                 {
                     sendError("cannot cast json to [String: Any]")
                     return
@@ -283,9 +283,9 @@ class APIManager
             
             do
             {
-                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
-                guard let json = jsonObject else
+                guard let json = jsonObject as? [String: Any] else
                 {
                     sendError("cannot cast json to [String: Any]")
                     return
@@ -317,6 +317,63 @@ class APIManager
             catch let error
             {
                 sendError("cannot pars json: \(error)")
+            }
+            
+        }
+        
+        task.resume()
+    }
+    
+    static func postAStudentLocation(accountKey: String, firstName: String, lastName: String, mapString: String, mediaURL: String, latitude: Double, longitude: Double, completionHandler: @escaping (_ result: [String: Any]?, _ error: Error?) -> Void)
+    {
+        let request = ParseRouter.createAStudentLocation(uniqueKey: accountKey, firstName: firstName, lastName: lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longitude).asUrlRequest()
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            func sendError(_ errorMessage: String)
+            {
+                print(errorMessage)
+                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
+                DispatchQueue.main.async {
+                    completionHandler(nil, NSError(domain: "getStudentLocations", code: 1, userInfo: userInfo))
+                }
+            }
+            
+            guard (error == nil) else
+            {
+                sendError("There was an error with your request: \(error!)")
+                return
+            }
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else
+            {
+                sendError("Your request returned a status code other than 2xx!")
+                print((response! as! HTTPURLResponse).statusCode)
+                return
+            }
+            
+            guard let data = data else
+            {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            do
+            {
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                
+                guard let json = jsonObject as? [String: Any] else
+                {
+                    sendError("cannot cast json to [String: Any]")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    completionHandler(json, nil) /*** HAPPY END! ***/
+                }
+            }
+            catch let error
+            {
+                sendError("cannot parse json: \(error)")
             }
             
         }

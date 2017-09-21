@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class AddLocationViewController: UIViewController
 {
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var websiteTextField: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -40,4 +44,54 @@ class AddLocationViewController: UIViewController
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func findLocation(_ sender: UIButton)
+    {
+        activityIndicator.startAnimating()
+        let gecoder = CLGeocoder()
+        gecoder.geocodeAddressString(locationTextField.text!) { (placemarks, error) in
+            
+            guard let placemarks = placemarks,
+                let location = placemarks.first?.location else
+            {
+                self.showErrorMessage("The location you entered is not valid")
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            self.activityIndicator.stopAnimating()
+            self.performSegue(withIdentifier: "AddLocationToCheckLocation", sender: location)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "AddLocationToCheckLocation"
+        {
+            let checkAddedLocationVC = segue.destination as! CheckAddedLocationViewController
+            checkAddedLocationVC.location = sender as! CLLocation
+            checkAddedLocationVC.mapString = locationTextField.text!
+            checkAddedLocationVC.mediaURL = websiteTextField.text!
+        }
+    }
+    
+    func showErrorMessage(_ message: String)
+    {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

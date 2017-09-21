@@ -185,7 +185,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="QGt-An-fSy" kind="show" id="wyC-6g-2fr"/>
+                                            <action selector="findLocation:" destination="esd-2d-dvr" eventType="touchUpInside" id="5bZ-NZ-lCB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -194,6 +194,10 @@
                                     <constraint firstItem="urZ-xh-Tzt" firstAttribute="height" secondItem="Nru-hy-TeF" secondAttribute="height" id="g6I-Wp-0OC"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Lh4-nP-1YX">
+                                <rect key="frame" x="177" y="365" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -206,7 +210,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="b7o-Nu-uV3"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Lh4-nP-1YX" id="kvT-bY-A8d"/>
                         <outlet property="findLocationButton" destination="Nru-hy-TeF" id="fTN-3M-elf"/>
+                        <outlet property="locationTextField" destination="qhu-gs-HgY" id="Bug-Vh-egd"/>
+                        <outlet property="websiteTextField" destination="urZ-xh-Tzt" id="jdi-55-ZVD"/>
+                        <segue destination="QGt-An-fSy" kind="show" identifier="AddLocationToCheckLocation" id="Ue2-oP-HNS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UpE-Av-gXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -241,20 +249,28 @@
                                     <action selector="finish:" destination="QGt-An-fSy" eventType="touchUpInside" id="F8j-9B-pF6"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Z9L-di-CtL">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lgv-bP-heP" firstAttribute="top" secondItem="6hR-fK-BbV" secondAttribute="bottom" id="19p-dO-gds"/>
                             <constraint firstItem="6hR-fK-BbV" firstAttribute="top" secondItem="oRI-rj-X5W" secondAttribute="bottom" id="7Xz-QP-Ulc"/>
+                            <constraint firstItem="Z9L-di-CtL" firstAttribute="centerY" secondItem="YH1-24-PMA" secondAttribute="centerY" id="ITA-Ut-Br0"/>
                             <constraint firstItem="CfX-T6-a4S" firstAttribute="leading" secondItem="YH1-24-PMA" secondAttribute="leading" constant="16" id="NOz-3f-eXo"/>
                             <constraint firstItem="lgv-bP-heP" firstAttribute="top" secondItem="CfX-T6-a4S" secondAttribute="bottom" constant="28" id="Szp-QL-cVG"/>
                             <constraint firstAttribute="trailing" secondItem="CfX-T6-a4S" secondAttribute="trailing" constant="16" id="X0y-Dt-hkS"/>
                             <constraint firstAttribute="trailing" secondItem="6hR-fK-BbV" secondAttribute="trailing" id="bm9-oG-q4J"/>
                             <constraint firstItem="6hR-fK-BbV" firstAttribute="leading" secondItem="YH1-24-PMA" secondAttribute="leading" id="pVO-xD-YTE"/>
+                            <constraint firstItem="Z9L-di-CtL" firstAttribute="centerX" secondItem="YH1-24-PMA" secondAttribute="centerX" id="sit-up-uvj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Z9L-di-CtL" id="g3b-TT-1Fd"/>
                         <outlet property="finishButton" destination="CfX-T6-a4S" id="a57-AY-eoc"/>
+                        <outlet property="mapView" destination="6hR-fK-BbV" id="vmz-pU-g1U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHM-6l-e8p" userLabel="First Responder" sceneMemberID="firstResponder"/>

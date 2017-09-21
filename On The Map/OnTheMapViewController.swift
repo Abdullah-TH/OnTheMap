@@ -18,6 +18,7 @@ class OnTheMapViewController: UIViewController
     {
         super.viewDidLoad()
         setupUI()
+        refreshStudentLocations()
         print(UdacityUser.currentUdacityUser.firstName, UdacityUser.currentUdacityUser.lastName, UdacityUser.currentUdacityUser.key)
     }
     

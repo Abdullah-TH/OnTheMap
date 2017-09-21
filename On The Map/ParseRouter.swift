@@ -14,7 +14,7 @@ enum ParseRouter
     // Possible requests
     case getStudentLocations
     case getAStudentLocation
-    case createAStudentLocation
+    case createAStudentLocation(uniqueKey: String, firstName: String, lastName: String, mapString: String, mediaURL: String, latitude: Double, longitude: Double)
     case updateAStudentLocation(objectID: String)
     
     // Base URL
@@ -46,16 +46,25 @@ enum ParseRouter
     
     // Parameters
     var parameters: Data? {
-        let parametersDictionary = [String: Any]()
+        
+        var parametersDictionary = [String: Any]()
         
         switch self
         {
-        case .getStudentLocations:
+        case .createAStudentLocation(let uniqueKey, let firstName, let lastName, let mapString, let mediaURL, let latitude, let longitude):
+            parametersDictionary["uniqueKey"] = uniqueKey
+            parametersDictionary["firstName"] = firstName
+            parametersDictionary["lastName"] = lastName
+            parametersDictionary["mapString"] = mapString
+            parametersDictionary["mediaURL"] = mediaURL
+            parametersDictionary["latitude"] = latitude
+            parametersDictionary["longitude"] = longitude
             break
         default:
             break
         }
         
+        // if there are no parameters, must return nil. Empty dictionary may cause the HTTP request to fail
         if parametersDictionary.isEmpty
         {
             return nil
@@ -77,6 +86,15 @@ enum ParseRouter
         // Headers
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        switch self
+        {
+        case .createAStudentLocation(_, _, _, _, _, _, _):
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+        default:
+            break
+        }
         
         request.httpBody = parameters
         
