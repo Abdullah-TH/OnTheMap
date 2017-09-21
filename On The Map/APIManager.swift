@@ -107,8 +107,6 @@ class APIManager
     private static func getUdacityUserPublicData(id: String, completionHandler: @escaping (_ result: UdacityUser?, _ error: Error?) -> Void)
     {
         let request = UdacityRouter.publicUserData(userID: id).asUrlRequest()
-        print(request.url!)
-        print(request.httpMethod!)
         let task = session.dataTask(with: request) { (data, response, error) in
             
             func sendError(_ errorMessage: String)
@@ -273,6 +271,7 @@ class APIManager
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else
             {
                 sendError("Your request returned a status code other than 2xx!")
+                print((response! as! HTTPURLResponse).statusCode)
                 return
             }
             

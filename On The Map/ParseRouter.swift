@@ -48,8 +48,23 @@ enum ParseRouter
     var parameters: Data? {
         let parametersDictionary = [String: Any]()
         
-        let data = try? JSONSerialization.data(withJSONObject: parametersDictionary, options: .prettyPrinted)
-        return data
+        switch self
+        {
+        case .getStudentLocations:
+            break
+        default:
+            break
+        }
+        
+        if parametersDictionary.isEmpty
+        {
+            return nil
+        }
+        else
+        {
+            let data = try? JSONSerialization.data(withJSONObject: parametersDictionary, options: .prettyPrinted)
+            return data
+        }
     }
     
     func asUrlRequest() -> URLRequest
