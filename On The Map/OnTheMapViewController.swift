@@ -11,14 +11,11 @@ import UIKit
 class OnTheMapViewController: UIViewController
 {
     static let udacityColor = UIColor(red: 81/255.0, green: 177/255.0, blue: 224/255.0, alpha: 1)
-
-    var studentLocations: [StudentLocation]?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         setupUI()
-        refreshStudentLocations()
         print(UdacityUser.currentUdacityUser.firstName, UdacityUser.currentUdacityUser.lastName, UdacityUser.currentUdacityUser.key)
     }
     
@@ -73,7 +70,7 @@ class OnTheMapViewController: UIViewController
             
             if error == nil
             {
-                self.studentLocations = results
+                StudentLocation.studentLocations = results!
                 self.shouldRefereshData()
             }
             else

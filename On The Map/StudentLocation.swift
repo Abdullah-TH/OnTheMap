@@ -10,6 +10,8 @@ import Foundation
 
 struct StudentLocation
 {
+    static var studentLocations = [StudentLocation]()
+    
     var objectID: String
     var uniqueKey: String
     var firstName: String

@@ -16,6 +16,10 @@ class ListViewController: OnTheMapViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        if StudentLocation.studentLocations.isEmpty
+        {
+            refreshStudentLocations()
+        }
     }
     
     override func activityIndicatorShouldStartAnimating()
@@ -39,27 +43,16 @@ extension ListViewController: UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let locations = studentLocations
-        {
-            return locations.count
-        }
-        
-        return 0
+        return StudentLocation.studentLocations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentLocationCell")! as! StudentLocationTableViewCell
-        if let location = studentLocations?[indexPath.row]
-        {
-            cell.icon.image = #imageLiteral(resourceName: "icon_pin")
-            cell.title.text = "\(location.firstName) \(location.lastName)"
-            cell.subtitle.text = location.mediaURL
-        }
-        else
-        {
-            cell.textLabel?.text = "ERROR"
-        }
+        let location = StudentLocation.studentLocations[indexPath.row]
+        cell.icon.image = #imageLiteral(resourceName: "icon_pin")
+        cell.title.text = "\(location.firstName) \(location.lastName)"
+        cell.subtitle.text = location.mediaURL
         
         return cell
     }
@@ -69,10 +62,8 @@ extension ListViewController: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if let location = studentLocations?[indexPath.row]
-        {
-            openURLInbrowser(url: URL(string: location.mediaURL))
-        }
+        let location = StudentLocation.studentLocations[indexPath.row]
+        openURLInbrowser(url: URL(string: location.mediaURL))
     }
 }
 

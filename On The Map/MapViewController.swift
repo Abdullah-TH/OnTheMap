@@ -17,6 +17,7 @@ class MapViewController: OnTheMapViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        refreshStudentLocations()
     }
     
     override func activityIndicatorShouldStartAnimating()
@@ -32,7 +33,7 @@ class MapViewController: OnTheMapViewController
     override func shouldRefereshData()
     {
         var annotations = [MKPointAnnotation]()
-        for location in studentLocations!
+        for location in StudentLocation.studentLocations
         {
             let lat = CLLocationDegrees(location.latitude)
             let long = CLLocationDegrees(location.longitude)
