@@ -30,6 +30,11 @@ class CheckAddedLocationViewController: UIViewController
         mapView.addAnnotation(annotation)
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+    }
+    
     func setupUI()
     {
         finishButton.layer.cornerRadius = 5
@@ -50,7 +55,15 @@ class CheckAddedLocationViewController: UIViewController
                                             if let result = result
                                             {
                                                 print(result)
-                                                self.dismiss(animated: true, completion: nil)
+                                                
+                                                let tabBarController = self.presentingViewController as! UITabBarController
+                                                let navController = tabBarController.selectedViewController as! UINavigationController
+                                                let onTheMapVC = navController.topViewController as! OnTheMapViewController
+                                                
+                                                self.dismiss(animated: true, completion: {
+                                                    
+                                                    onTheMapVC.refreshStudentLocations()
+                                                })
                                             }
                                             else
                                             {
