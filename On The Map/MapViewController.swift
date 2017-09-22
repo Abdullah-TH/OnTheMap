@@ -23,11 +23,17 @@ class MapViewController: OnTheMapViewController
     override func activityIndicatorShouldStartAnimating()
     {
         activityIndicator.startAnimating()
+        UIView.animate(withDuration: 0.2) {
+            self.mapView.alpha = 0.3
+        }
     }
     
     override func activityIndicatorShouldStopAnimating()
     {
         activityIndicator.stopAnimating()
+        UIView.animate(withDuration: 0.2) {
+            self.mapView.alpha = 1.0
+        }
     }
     
     override func shouldRefereshData()

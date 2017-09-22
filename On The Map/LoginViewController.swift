@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController
 {
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -21,8 +22,17 @@ class LoginViewController: UIViewController
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        UIView.animate(withDuration: 0.4) {
+            self.containerView.alpha = 1.0
+        }
+    }
+    
     func setupUI()
     {
+        containerView.alpha = 0.0
         loginButton.layer.cornerRadius = 5
     }
 
