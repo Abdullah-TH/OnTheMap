@@ -28,6 +28,10 @@ class CheckAddedLocationViewController: UIViewController
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
         mapView.addAnnotation(annotation)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.4, longitudeDelta: 0.4)
+        let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -68,20 +72,13 @@ class CheckAddedLocationViewController: UIViewController
                                             else
                                             {
                                                 print(result ?? "no result")
-                                                self.showErrorMessage(error!.localizedDescription)
+                                                AlertControllerMaker.showErrorMessage(error!.localizedDescription, inViewController: self)
                                             }
                                             
                                             self.activityIndicator.stopAnimating()
         }
     }
     
-    func showErrorMessage(_ message: String)
-    {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
-    }
 }
 
 

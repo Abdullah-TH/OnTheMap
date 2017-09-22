@@ -53,7 +53,7 @@ class AddLocationViewController: UIViewController
             guard let placemarks = placemarks,
                 let location = placemarks.first?.location else
             {
-                self.showErrorMessage("The location you entered is not valid")
+                AlertControllerMaker.showErrorMessage("The location you entered is not valid", inViewController: self)
                 self.activityIndicator.stopAnimating()
                 return
             }
@@ -72,14 +72,6 @@ class AddLocationViewController: UIViewController
             checkAddedLocationVC.mapString = locationTextField.text!
             checkAddedLocationVC.mediaURL = websiteTextField.text!
         }
-    }
-    
-    func showErrorMessage(_ message: String)
-    {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
     }
     
 }

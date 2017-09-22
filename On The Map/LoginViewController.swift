@@ -29,6 +29,10 @@ class LoginViewController: UIViewController
     @IBAction func login(_ sender: UIButton)
     {
         activityIndicator.startAnimating()
+        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty
+        {
+            AlertControllerMaker.showErrorMessage("Please enter email and password", inViewController: self)
+        }
         APIManager.loginToUdacity(username: emailTextField.text!, password: passwordTextField.text!) { (udacityUser, error) in
             
             self.activityIndicator.stopAnimating()
@@ -40,10 +44,7 @@ class LoginViewController: UIViewController
             }
             else
             {
-                let alertController = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
-                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-                alertController.addAction(action)
-                self.present(alertController, animated: true, completion: nil)
+                AlertControllerMaker.showErrorMessage(error!.localizedDescription, inViewController: self)
             }
         }
     }
@@ -54,6 +55,7 @@ class LoginViewController: UIViewController
         let url = URL(string: "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")!
         app.open(url, options: [:], completionHandler: nil)
     }
+
 }
 
 

@@ -28,13 +28,13 @@ class APIManager
             
             guard (error == nil) else
             {
-                sendError("There was an error with your request: \(error!)")
+                sendError(error!.localizedDescription)
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else
             {
-                sendError("Your request returned a status code other than 2xx!")
+                sendError("Wrong email and/or password")
                 return
             }
             

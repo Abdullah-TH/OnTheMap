@@ -75,19 +75,11 @@ class OnTheMapViewController: UIViewController
             }
             else
             {
-                self.showErrorMessage(error!.localizedDescription)
+                AlertControllerMaker.showErrorMessage(error!.localizedDescription, inViewController: self)
             }
             
             self.activityIndicatorShouldStopAnimating()
         }
-    }
-    
-    func showErrorMessage(_ message: String)
-    {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
     }
     
     func openURLInbrowser(url: URL?)
@@ -99,13 +91,13 @@ class OnTheMapViewController: UIViewController
                 
                 if !success
                 {
-                    self.showErrorMessage("Invalid link")
+                    AlertControllerMaker.showErrorMessage("Invalid link", inViewController: self)
                 }
             })
         }
         else
         {
-            showErrorMessage("Invalid link")
+            AlertControllerMaker.showErrorMessage("Invalid link", inViewController: self)
         }
     }
     

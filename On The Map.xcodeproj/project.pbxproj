@@ -26,6 +26,7 @@
 		6A63613C1F6AD0A10002A1F7 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A63613B1F6AD0A10002A1F7 /* StudentLocation.swift */; };
 		6A758B2E1F7299810025B4C6 /* StudentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A758B2D1F7299810025B4C6 /* StudentLocationTableViewCell.swift */; };
 		6AD1BAB51F712BE900EB0DF8 /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1BAB41F712BE900EB0DF8 /* UdacityUser.swift */; };
+		B8775DBF1F75B72E00C48E98 /* AlertControllerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8775DBE1F75B72E00C48E98 /* AlertControllerMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		6A63613B1F6AD0A10002A1F7 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		6A758B2D1F7299810025B4C6 /* StudentLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationTableViewCell.swift; sourceTree = "<group>"; };
 		6AD1BAB41F712BE900EB0DF8 /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
+		B8775DBE1F75B72E00C48E98 /* AlertControllerMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				6A6361321F6AB10A0002A1F7 /* ListViewController.swift */,
 				6A6361361F6AB81A0002A1F7 /* AddLocationViewController.swift */,
 				6A6361381F6AB9B00002A1F7 /* CheckAddedLocationViewController.swift */,
+				B8775DBE1F75B72E00C48E98 /* AlertControllerMaker.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				6A6361331F6AB10A0002A1F7 /* ListViewController.swift in Sources */,
 				6AD1BAB51F712BE900EB0DF8 /* UdacityUser.swift in Sources */,
 				6A6361351F6AB3DC0002A1F7 /* LoginViewController.swift in Sources */,
+				B8775DBF1F75B72E00C48E98 /* AlertControllerMaker.swift in Sources */,
 				6A58F4B91F6E354E0075C174 /* ParseRouter.swift in Sources */,
 				6A6360FC1F695B0D0002A1F7 /* AppDelegate.swift in Sources */,
 				6A6361391F6AB9B00002A1F7 /* CheckAddedLocationViewController.swift in Sources */,
