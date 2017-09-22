@@ -39,10 +39,14 @@ class LoginViewController: UIViewController
     @IBAction func login(_ sender: UIButton)
     {
         activityIndicator.startAnimating()
-        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty
+        
+        guard !emailTextField.text!.isEmpty || !passwordTextField.text!.isEmpty else
         {
             AlertControllerMaker.showErrorMessage("Please enter email and password", inViewController: self)
+            activityIndicator.stopAnimating()
+            return
         }
+        
         APIManager.loginToUdacity(username: emailTextField.text!, password: passwordTextField.text!) { (udacityUser, error) in
             
             self.activityIndicator.stopAnimating()
