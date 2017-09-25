@@ -333,7 +333,6 @@ class APIManager
             
             func sendError(_ errorMessage: String)
             {
-                print(errorMessage)
                 let userInfo = [NSLocalizedDescriptionKey : errorMessage]
                 DispatchQueue.main.async {
                     completionHandler(nil, NSError(domain: "getStudentLocations", code: 1, userInfo: userInfo))
@@ -342,14 +341,13 @@ class APIManager
             
             guard (error == nil) else
             {
-                sendError("There was an error with your request: \(error!)")
+                sendError(error!.localizedDescription)
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else
             {
                 sendError("Your request returned a status code other than 2xx!")
-                print((response! as! HTTPURLResponse).statusCode)
                 return
             }
             
@@ -375,7 +373,7 @@ class APIManager
             }
             catch let error
             {
-                sendError("cannot parse json: \(error)")
+                sendError("cannot parse json: \(error.localizedDescription)")
             }
             
         }
