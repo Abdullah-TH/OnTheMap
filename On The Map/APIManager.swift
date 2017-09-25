@@ -192,7 +192,7 @@ class APIManager
             
             guard (error == nil) else
             {
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
             
@@ -240,7 +240,7 @@ class APIManager
             }
             catch let error
             {
-                sendError("cannot pars json: \(error)")
+                sendError("cannot pars json: \(error.localizedDescription)")
             }
             
         }
@@ -248,9 +248,10 @@ class APIManager
         task.resume()
     }
     
-    static func getStudentLocations(completionHandler: @escaping (_ results: [StudentLocation]?, _ error: Error?) -> Void)
+    static func getStudentLocations(limit: Int, completionHandler: @escaping (_ results: [StudentLocation]?, _ error: Error?) -> Void)
     {
-        let request = ParseRouter.getStudentLocations.asUrlRequest()
+        let request = ParseRouter.getStudentLocations(limit: limit).asUrlRequest()
+        print(request.url!)
         let task = session.dataTask(with: request) { (data, response, error) in
             
             func sendError(_ errorMessage: String)
@@ -290,7 +291,7 @@ class APIManager
                     sendError("cannot cast json to [String: Any]")
                     return
                 }
-                
+
                 guard let results = json["results"] as? [[String: Any]] else
                 {
                     sendError("cannot parse json 'results' key")
@@ -298,6 +299,7 @@ class APIManager
                 }
                 
                 var studentLocations = [StudentLocation]()
+
                 for (index, studentLocationsDictionary) in results.enumerated()
                 {
                     if let studentLocation = StudentLocation(studentLocationsDictionary: studentLocationsDictionary)

@@ -49,7 +49,7 @@ class OnTheMapViewController: UIViewController
             }
             else
             {
-                print(error!.localizedDescription)
+                AlertControllerMaker.showErrorMessage(error!.localizedDescription, inViewController: self)
             }
             
             self.activityIndicatorShouldStopAnimating()
@@ -66,7 +66,7 @@ class OnTheMapViewController: UIViewController
     func refreshStudentLocations()
     {
         activityIndicatorShouldStartAnimating()
-        APIManager.getStudentLocations { (results, error) in
+        APIManager.getStudentLocations(limit: 100) { (results, error) in
             
             if error == nil
             {

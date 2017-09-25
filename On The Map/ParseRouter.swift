@@ -12,13 +12,13 @@ import Foundation
 enum ParseRouter
 {
     // Possible requests
-    case getStudentLocations
+    case getStudentLocations(limit: Int)
     case getAStudentLocation
     case createAStudentLocation(uniqueKey: String, firstName: String, lastName: String, mapString: String, mediaURL: String, latitude: Double, longitude: Double)
     case updateAStudentLocation(objectID: String)
     
     // Base URL
-    static let baseURLString = "https://parse.udacity.com/parse/classes/"
+    static let baseURLString = "https://parse.udacity.com"
     
     // Method
     var method: String {
@@ -38,10 +38,23 @@ enum ParseRouter
         switch self
         {
         case .getStudentLocations, .getAStudentLocation, .createAStudentLocation:
-            return "StudentLocation"
+            return "/parse/classes/StudentLocation"
         case .updateAStudentLocation(let objectID):
-            return "StudentLocation/\(objectID)"
+            return "/parse/classes/StudentLocation/\(objectID)"
         }
+    }
+    
+    // Query Items
+    var quryItems: [URLQueryItem] {
+        var items = [URLQueryItem]()
+        switch self
+        {
+        case .getStudentLocations(let limit):
+            items.append(URLQueryItem(name: "limit", value: "\(limit)"))
+        default:
+            break
+        }
+        return items
     }
     
     // Parameters
@@ -78,9 +91,13 @@ enum ParseRouter
     
     func asUrlRequest() -> URLRequest
     {
-        var url = URL(string: ParseRouter.baseURLString)!
-        url = url.appendingPathComponent(relativePath)
-        var request = URLRequest(url: url)
+        var urlComponents = URLComponents(string: ParseRouter.baseURLString)
+        urlComponents?.path = relativePath
+        urlComponents?.queryItems = quryItems
+        let url = urlComponents?.url
+        print(urlComponents ?? "nil")
+        print(url ?? "nil")
+        var request = URLRequest(url: url!)
         request.httpMethod = method
         
         // Headers
