@@ -51,6 +51,7 @@ enum ParseRouter
         {
         case .getStudentLocations(let limit):
             items.append(URLQueryItem(name: "limit", value: "\(limit)"))
+            items.append(URLQueryItem(name: "order", value: "-updatedAt"))
         default:
             break
         }
