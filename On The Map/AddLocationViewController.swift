@@ -39,6 +39,8 @@ class AddLocationViewController: UIViewController
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
     {
+        super.viewWillTransition(to: size, with: coordinator)
+        
         if UIDevice.current.orientation.isLandscape
         {
             subscribeToKeyboardNotification()
@@ -142,7 +144,6 @@ extension AddLocationViewController: UITextFieldDelegate
     {
         if textField === locationTextField
         {
-            locationTextField.resignFirstResponder()
             websiteTextField.becomeFirstResponder()
         }
         else if textField === websiteTextField

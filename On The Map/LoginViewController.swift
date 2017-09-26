@@ -47,13 +47,18 @@ class LoginViewController: UIViewController
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
     {
-        if UIDevice.current.orientation.isLandscape
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if view.window != nil // if this view controller's view is currently visible
         {
-            subscribeToKeyboardNotification()
-        }
-        else
-        {
-            removeKeyboardNotificationSubscription()
+            if UIDevice.current.orientation.isLandscape
+            {
+                subscribeToKeyboardNotification()
+            }
+            else
+            {
+                removeKeyboardNotificationSubscription()
+            }
         }
     }
     
@@ -78,7 +83,7 @@ class LoginViewController: UIViewController
     {
         if view.frame.origin.y == 0
         {
-            view.frame.origin.y -= 50.0
+            view.frame.origin.y -= 130.0
         }
     }
     
@@ -141,7 +146,6 @@ extension LoginViewController: UITextFieldDelegate
     {
         if textField === emailTextField
         {
-            emailTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
         }
         else if textField === passwordTextField
