@@ -170,12 +170,18 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="esd-2d-dvr" id="9vE-CV-l6n"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="urZ-xh-Tzt">
                                         <rect key="frame" x="0.0" y="48" width="275" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="URL"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="esd-2d-dvr" id="X0o-6H-o6s"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nru-hy-TeF">
                                         <rect key="frame" x="0.0" y="96" width="275" height="40"/>
@@ -201,6 +207,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IjM-Xg-NPb" secondAttribute="trailing" constant="50" id="1By-L4-7xF"/>
                             <constraint firstItem="IjM-Xg-NPb" firstAttribute="leading" secondItem="oLz-iy-uYA" secondAttribute="leading" constant="50" id="Ubt-zG-9rm"/>
@@ -210,6 +217,9 @@
                             <constraint firstItem="Lh4-nP-1YX" firstAttribute="top" secondItem="IjM-Xg-NPb" secondAttribute="bottom" constant="8" id="rLW-el-TuV"/>
                             <constraint firstItem="Lh4-nP-1YX" firstAttribute="centerX" secondItem="oLz-iy-uYA" secondAttribute="centerX" id="un9-KS-nCB"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="uFZ-h5-1BL" appends="YES" id="e2i-Wf-fA4"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="b7o-Nu-uV3"/>
                     <connections>
@@ -221,6 +231,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UpE-Av-gXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uFZ-h5-1BL">
+                    <connections>
+                        <action selector="backgroundViewTapped:" destination="esd-2d-dvr" id="tyK-X9-5Gm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4674" y="106"/>
         </scene>
@@ -309,12 +324,18 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Mkd-nL-P6J" id="z2Y-Zj-LL3"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nl2-Kx-YcN">
                                                 <rect key="frame" x="0.0" y="48" width="275" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Mkd-nL-P6J" id="viE-rB-iut"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m0-Mh-1L2">
                                                 <rect key="frame" x="0.0" y="96" width="275" height="40"/>
@@ -370,6 +391,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="YIK-SH-k4a" firstAttribute="leading" secondItem="dzA-qL-r2h" secondAttribute="leadingMargin" constant="14" id="LYL-eb-pSa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YIK-SH-k4a" secondAttribute="trailing" constant="14" id="O30-Vb-3IU"/>
@@ -377,6 +399,9 @@
                             <constraint firstItem="YIK-SH-k4a" firstAttribute="top" secondItem="ft6-hv-EBN" secondAttribute="bottom" constant="25" id="h40-Gf-gi2"/>
                             <constraint firstItem="ft6-hv-EBN" firstAttribute="top" secondItem="JNN-ZX-DCp" secondAttribute="bottom" constant="45" id="rEi-ZU-ZmM"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2qT-mb-LhG" appends="YES" id="lKc-jm-g5p"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Ce7-9p-uGr" id="kMS-XK-bgd"/>
@@ -388,8 +413,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cep-9b-dhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2qT-mb-LhG">
+                    <connections>
+                        <action selector="backgroundViewTapped:" destination="Mkd-nL-P6J" id="rwH-Pc-Hh6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-44" y="105.69715142428787"/>
+            <point key="canvasLocation" x="-1" y="106"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nyc-db-nLj">
@@ -408,7 +438,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSg-Br-q8a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="881" y="106"/>
+            <point key="canvasLocation" x="985" y="106"/>
         </scene>
         <!--Map-->
         <scene sceneID="Rwi-MH-1za">

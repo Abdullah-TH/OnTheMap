@@ -22,6 +22,33 @@ class AddLocationViewController: UIViewController
         setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        if UIDevice.current.orientation.isLandscape
+        {
+            subscribeToKeyboardNotification()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        removeKeyboardNotificationSubscription()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        if UIDevice.current.orientation.isLandscape
+        {
+            subscribeToKeyboardNotification()
+        }
+        else
+        {
+            removeKeyboardNotificationSubscription()
+        }
+    }
+    
     func setupUI()
     {
         let textAttributes: [String: Any] = [NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 14.0) as Any]
@@ -37,6 +64,33 @@ class AddLocationViewController: UIViewController
         navigationItem.backBarButtonItem = backButton
         
         findLocationButton.layer.cornerRadius = 5
+    }
+    
+    func subscribeToKeyboardNotification()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func removeKeyboardNotificationSubscription()
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        if view.frame.origin.y == 0
+        {
+            view.frame.origin.y -= 130.0
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification)
+    {
+        if view.frame.origin.y != 0
+        {
+            view.frame.origin.y = 0.0
+        }
     }
     
     func cancel()
@@ -63,6 +117,12 @@ class AddLocationViewController: UIViewController
         }
     }
     
+    @IBAction func backgroundViewTapped(_ sender: UITapGestureRecognizer)
+    {
+        locationTextField.resignFirstResponder()
+        websiteTextField.resignFirstResponder()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "AddLocationToCheckLocation"
@@ -74,6 +134,24 @@ class AddLocationViewController: UIViewController
         }
     }
     
+}
+
+extension AddLocationViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        if textField === locationTextField
+        {
+            locationTextField.resignFirstResponder()
+            websiteTextField.becomeFirstResponder()
+        }
+        else if textField === websiteTextField
+        {
+            websiteTextField.resignFirstResponder()
+        }
+        
+        return true
+    }
 }
 
 
